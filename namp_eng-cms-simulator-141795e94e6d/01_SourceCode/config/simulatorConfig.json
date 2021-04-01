@@ -1,0 +1,262 @@
+{
+    "CMS": {
+        "Name": "Test Simulator",
+        "CMS_URL": "ws://testcms1.numocity.com:9033/ocpp/"
+    },
+    "ChargeStations": {
+        "Station-1": {
+            "CP-1": {
+                "CP-Config": {
+                    "CPID": "Testcharge001",
+                    "OCCP_Version": 1.6,
+                    "HeartBeat": 30,
+                    "MeterValueInterval": 10,
+                    "CPPayload": "CP1Payload.json",
+                    "Active": true
+                },
+                "AC": {
+                     "Connector-1": {
+                        "ConnectorID": 1,
+                        "StartUnit": 0,
+                        "Unit": "kWh",
+                        "RandomValues": false,
+                        "Payload_Config": "CP1DC1Message.json",
+                        "No_of_MeterValues": 0,
+                        "Active": true
+                    },
+                    "Connector-2": {
+                        "ConnectorID": 2,
+                        "StartUnit": 20,
+                        "Unit": "Wh",
+                        "RandomValues": true,
+                        "Payload_Config": "CP1AC2Message.json",
+                        "No_of_MeterValues": 5,
+                        "Active": false
+                    }
+                },
+                "DC": {
+                    "Connector-3": {
+                        "ConnectorID": 1,
+                        "StartUnit": 0,
+                        "Unit": "kWh",
+                        "RandomValues": false,
+                        "Payload_Config": "CP1AC1Message.json",
+                        "No_of_MeterValues": 5,
+                        "Active": false
+                    },
+                    "Connector-4": {
+                        "ConnectorID": 4,
+                        "StartUnit": 0,
+                        "Unit": "kWh",
+                        "RandomValues": false,
+                        "Payload_Config": "CP1DC2Message.json",
+                        "No_of_MeterValues": 90,
+                        "Active": false
+                    }
+                }
+            },
+            "CP-2": {
+                "CP-Config": {
+                    "CPID": "HC002",
+                    "OCCP_Version": 1.6,
+                    "HeartBeat": 30,
+                    "MeterValueInterval": 10,
+                    "CPPayload": "CP2Payload.json",
+                    "Active": false
+                },
+                "AC": {
+                     "Connector-1": {
+                        "ConnectorID": 4,
+                        "StartUnit": 12,
+                        "Unit": "kWh",
+                        "RandomValues": false,
+                        "Payload_Config": "CP2AC1Message.json",
+                        "No_of_MeterValues": 3,
+                        "Active": false
+                    }
+                },
+                "DC": {
+                    "Connector-2": {
+                        "ConnectorID": 1,
+                        "StartUnit": 12,
+                        "Unit": "kWh",
+                        "RandomValues": false,
+                        "Payload_Config": "CP2DC1Message.json",
+                        "No_of_MeterValues": 300,
+                        "Active": true
+                    },
+                    "Connector-3": {
+                        "ConnectorID": 2,
+                        "StartUnit": 12,
+                        "Unit": "kWh",
+                        "RandomValues": false,
+                        "Payload_Config": "CP2DC2Message.json",
+                        "No_of_MeterValues": 4,
+                        "Active": false
+                    },
+                    "Connector-4": {
+                        "ConnectorID": 3,
+                        "StartUnit": 12,
+                        "Unit": "kWh",
+                        "RandomValues": false,
+                        "Payload_Config": "CP2DC3Message.json",
+                        "No_of_MeterValues": 4,
+                        "Active": false
+                    }
+                }
+            },
+            "CP-3": {
+                "CP-Config": {
+                    "CPID": "HC003",
+                    "OCCP_Version": 1.6,
+                    "HeartBeat": 30,
+                    "MeterValueInterval": 10,
+                    "CPPayload": "CP3Payload.json",
+                    "Active": false
+                },
+                "AC": {
+                     "Connector-1": {
+                        "ConnectorID": 1,
+                        "StartUnit": 12,
+                        "Unit": "kWh",
+                        "RandomValues": false,
+                        "Payload_Config": "CP3AC1Message.json",
+                        "No_of_MeterValues": 150,
+                        "Active": true
+                    }  
+                },
+                "DC": {
+                    "Connector-2": {
+                        "ConnectorID": 2,
+                        "StartUnit": 12,
+                        "Unit": "kWh",
+                        "RandomValues": false,
+                        "Payload_Config": "CP3DC1Message.json",
+                        "No_of_MeterValues": 4,
+                        "Active": true
+                    },
+                    "Connector-3": {
+                        "ConnectorID": 3,
+                        "StartUnit": 12,
+                        "Unit": "kWh",
+                        "RandomValues": false,
+                        "Payload_Config": "CP3DC2Message.json",
+                        "No_of_MeterValues": 90,
+                        "Active": true
+                    },
+                    "Connector-4": {
+                        "ConnectorID": 4,
+                        "StartUnit": 12,
+                        "Unit": "kWh",
+                        "RandomValues": false,
+                        "Payload_Config": "CP3DC3Message.json",
+                        "No_of_MeterValues": 4,
+                        "Active": true
+                    }
+                }
+            },
+            "CP-4": {
+                "CP-Config": {
+                    "CPID": "HC004",
+                    "OCCP_Version": 1.6,
+                    "HeartBeat": 30,
+                    "MeterValueInterval": 10,
+                    "CPPayload": "CP4Payload.json",
+                    "Active": false
+                },
+                "AC": {
+                     
+                },
+                "DC": {
+                    "Connector-1": {
+                        "ConnectorID": 1,
+                        "StartUnit": 12,
+                        "Unit": "kWh",
+                        "RandomValues": false,
+                        "Payload_Config": "CP4DC1Message.json",
+                        "No_of_MeterValues": 3,
+                        "Active": true
+                    },
+                    "Connector-2": {
+                        "ConnectorID": 2,
+                        "StartUnit": 12,
+                        "Unit": "kWh",
+                        "RandomValues": false,
+                        "Payload_Config": "CP4DC2Message.json",
+                        "No_of_MeterValues": 4,
+                        "Active": true
+                    },
+                    "Connector-3": {
+                        "ConnectorID": 3,
+                        "StartUnit": 12,
+                        "Unit": "kWh",
+                        "RandomValues": false,
+                        "Payload_Config": "CP4DC3Message.json",
+                        "No_of_MeterValues": 4,
+                        "Active": true
+                    },
+                    "Connector-4": {
+                        "ConnectorID": 4,
+                        "StartUnit": 12,
+                        "Unit": "kWh",
+                        "RandomValues": false,
+                        "Payload_Config": "CP4DC4Message.json",
+                        "No_of_MeterValues": 4,
+                        "Active": true
+                    }
+                }
+            },
+            "CP-5": {
+                "CP-Config": {
+                    "CPID": "HC005",
+                    "OCCP_Version": 1.6,
+                    "HeartBeat": 30,
+                    "MeterValueInterval": 10,
+                    "CPPayload": "CP5Payload.json",
+                    "Active": false
+                },
+                "AC": {
+                     "Connector-1": {
+                        "ConnectorID": 1,
+                        "StartUnit": 12,
+                        "Unit": "kWh",
+                        "RandomValues": false,
+                        "Payload_Config": "CP5AC1Message.json",
+                        "No_of_MeterValues": 270,
+                        "Active": true
+                    },
+                    "Connector-2": {
+                        "ConnectorID": 2,
+                        "StartUnit": 12,
+                        "Unit": "kWh",
+                        "RandomValues": false,
+                        "Payload_Config": "CP5AC2Message.json",
+                        "No_of_MeterValues": 4,
+                        "Active": true
+                    },
+                    "Connector-3": {
+                        "ConnectorID": 3,
+                        "StartUnit": 12,
+                        "Unit": "kWh",
+                        "RandomValues": false,
+                        "Payload_Config": "CP5AC3Message.json",
+                        "No_of_MeterValues": 4,
+                        "Active": true
+                    },
+                    "Connector-4": {
+                        "ConnectorID": 4,
+                        "StartUnit": 12,
+                        "Unit": "kWh",
+                        "RandomValues": false,
+                        "Payload_Config": "CP5AC4Message.json",
+                        "No_of_MeterValues": 4,
+                        "Active": true
+                    }
+                },
+                "DC": {
+                    
+                }
+            }
+        }
+    }
+}

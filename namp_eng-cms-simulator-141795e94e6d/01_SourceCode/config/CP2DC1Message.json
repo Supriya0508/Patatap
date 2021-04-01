@@ -1,0 +1,100 @@
+[
+	[2, "UniqueID", "StatusNotification", { 
+		"connectorId": 1,
+		"errorCode":"NoError",
+		"info":"NoInfo",
+		"status":"Available",
+		"timestamp":"",
+		"vendorErrorCode":"",
+		"vendorId":""
+	}],
+	[2, "UniqueID", "StatusNotification", { 
+		"connectorId": 1,
+		"errorCode":"NoError",
+		"info":"NoInfo",
+		"status":"Preparing",
+		"timestamp":"",
+		"vendorErrorCode":"",
+		"vendorId":""
+	}],
+	["Pause"],
+	[2, "UniqueID", "Authorize", { 
+		"idTag": "CorporateInternRFID" 
+	}],
+	[2, "UniqueID", "StartTransaction", {
+        "connectorId": 1,
+        "idTag": "CorporateInternRFID",
+        "timestamp": "",
+        "meterStart": 0,
+        "reservationId": 0
+    }],
+    [2, "UniqueID", "StatusNotification", { 
+		"connectorId": 1,
+		"errorCode":"NoError",
+		"info":"NoInfo",
+		"status":"Charging",
+		"timestamp":"",
+		"vendorErrorCode":"",
+		"vendorId":""
+	}],
+    [2, "UniqueID", "MeterValues", {
+        "connectorId": 1, "transactionId": "", "meterValue":[
+            {
+                "timestamp": "",
+                "sampledValue":[
+					{
+						"context":"Sample.Periodic",
+						"format":"Raw",
+						"measurand":"SoC",
+						"location":"EV",
+						"unit":"Percent",
+						"phase":null,
+						"value": "0"
+					}
+				]
+            },
+			{
+				"timestamp": "",
+                "sampledValue":[
+					{
+						"value": "0",
+						"context": "Sample.Periodic",
+						"format": "Raw",
+						"measurand": "",
+						"phase": "L1",
+						"location": "Outlet",
+						"unit": "Wh"
+					}
+				]
+			}
+        ]
+    }],
+    [2, "UniqueID", "Authorize", { 
+		"idTag": "CorporateInternRFID" 
+	}],
+    [2, "UniqueID", "StatusNotification", { 
+		"connectorId": 1,
+		"errorCode":"NoError",
+		"info":"NoInfo",
+		"status":"Finishing",
+		"timestamp":"",
+		"vendorErrorCode":"",
+		"vendorId":""
+	}],
+    [2, "UniqueID", "StopTransaction", { 
+	    "idTag": "CorporateInternRFID", 
+		"meterStop": "", 
+		"timestamp": "", 
+		"transactionId": "" , 
+		"reason":"Success"
+	}],
+    [2, "UniqueID", "StatusNotification", { 
+		"connectorId": 1,
+		"errorCode":"NoError",
+		"info":"NoInfo",
+		"status":"Available",
+		"timestamp":"",
+		"vendorErrorCode":"",
+		"vendorId":""
+	}]
+]

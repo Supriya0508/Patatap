@@ -1,0 +1,29 @@
+[
+	[2, "UniqueID", "StatusNotification", { 
+		"connectorId": 1,
+		"errorCode":"NoError",
+		"info":"NoInfo",
+		"status":"Available",
+		"timestamp":"",
+		"vendorErrorCode":"",
+		"vendorId":""
+	}],
+	[2, "UniqueID", "StatusNotification", { 
+		"connectorId": 1,
+		"errorCode":"NoError",
+		"info":"NoInfo",
+		"status":"Preparing",
+		"timestamp":"",
+		"vendorErrorCode":"",
+		"vendorId":""
+	}],
+    [2, "UniqueID", "StatusNotification", { 
+		"connectorId": 1,
+		"errorCode":"NoError",
+		"info":"NoInfo",
+		"status":"Available",
+		"timestamp":"",
+		"vendorErrorCode":"",
+		"vendorId":""
+	}]
+]

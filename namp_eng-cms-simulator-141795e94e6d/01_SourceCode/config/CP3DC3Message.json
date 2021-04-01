@@ -1,0 +1,97 @@
+[
+	[2, "UniqueID", "StatusNotification", { 
+		"connectorId": 1,
+		"errorCode":"NoError",
+		"info":"NoInfo",
+		"status":"Available",
+		"timestamp":"",
+		"vendorErrorCode":"",
+		"vendorId":""
+	}],
+	[2, "UniqueID", "StatusNotification", { 
+		"connectorId": 1,
+		"errorCode":"NoError",
+		"info":"NoInfo",
+		"status":"Preparing",
+		"timestamp":"",
+		"vendorErrorCode":"",
+		"vendorId":""
+	}],
+	["Remote Start"],
+	[3, "UniqueID", { "status": "Accepted" }],
+	[2, "UniqueID", "StartTransaction", {
+        "connectorId": 1,
+        "idTag": "nceeyvcgkfdicdc6",
+        "timestamp": "",
+        "meterStart": 2000,
+        "reservationId": 0
+    }],
+    [2, "UniqueID", "StatusNotification", { 
+		"connectorId": 1,
+		"errorCode":"NoError",
+		"info":"NoInfo",
+		"status":"Charging",
+		"timestamp":"",
+		"vendorErrorCode":"",
+		"vendorId":""
+	}],
+    [2, "UniqueID", "MeterValues", {
+        "connectorId": 1, "transactionId": "", "meterValue":[
+            {
+                "timestamp": "",
+                "sampledValue":[
+					{
+						"context":"Sample.Periodic",
+						"format":"Raw",
+						"measurand":"SoC",
+						"location":"EV",
+						"unit":"Percent",
+						"phase":null,
+						"value": "0"
+					}
+				]
+            },
+			{
+				"timestamp": "",
+                "sampledValue":[
+					{
+						"value": "0",
+						"context": "Sample.Periodic",
+						"format": "Raw",
+						"measurand": "Energy.Active.Import.Register",
+						"phase": "L1",
+						"location": "Outlet",
+						"unit": ""
+					}
+				]
+			}
+        ]
+    }],
+    ["Remote Stop"],
+	[3, "UniqueID", { "status": "Accepted" }],
+    [2, "UniqueID", "StatusNotification", { 
+		"connectorId": 1,
+		"errorCode":"NoError",
+		"info":"NoInfo",
+		"status":"Finishing",
+		"timestamp":"",
+		"vendorErrorCode":"",
+		"vendorId":""
+	}],
+    [2, "UniqueID", "StopTransaction", { 
+	    "idTag": "nceeyvcgkfdicdc6", 
+		"meterStop": "", 
+		"timestamp": "", 
+		"transactionId": "", 
+		"reason":"Success"
+	}],
+    [2, "UniqueID", "StatusNotification", { 
+		"connectorId": 1,
+		"errorCode":"NoError",
+		"info":"NoInfo",
+		"status":"Available",
+		"timestamp":"",
+		"vendorErrorCode":"",
+		"vendorId":""
+	}]
+]

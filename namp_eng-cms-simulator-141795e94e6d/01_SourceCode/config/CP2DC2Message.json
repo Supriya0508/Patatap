@@ -1,0 +1,51 @@
+[
+	[2, "UniqueID", "StatusNotification", { 
+		"connectorId": 2,
+		"errorCode":"NoError",
+		"info":"NoInfo",
+		"status":"Available",
+		"timestamp":"",
+		"vendorErrorCode":"",
+		"vendorId":""
+	}],
+	["Delay", 40],
+	[2, "UniqueID", "StatusNotification", { 
+		"connectorId": 2,
+		"errorCode":"NoError",
+		"info":"NoInfo",
+		"status":"Preparing",
+		"timestamp":"",
+		"vendorErrorCode":"",
+		"vendorId":""
+	}],
+	["Delay", 40],
+    [2, "UniqueID", "StatusNotification", { 
+		"connectorId": 2,
+		"errorCode":"NoError",
+		"info":"NoInfo",
+		"status":"Available",
+		"timestamp":"",
+		"vendorErrorCode":"",
+		"vendorId":""
+	}],
+	["Delay", 40],
+    [2, "UniqueID", "StatusNotification", { 
+		"connectorId": 2,
+		"errorCode":"NoError",
+		"info":"NoInfo",
+		"status":"Charging",
+		"timestamp":"",
+		"vendorErrorCode":"",
+		"vendorId":""
+	}],
+	["Delay", 40],
+    [2, "UniqueID", "StatusNotification", { 
+		"connectorId": 2,
+		"errorCode":"NoError",
+		"info":"NoInfo",
+		"status":"Available",
+		"timestamp":"",
+		"vendorErrorCode":"",
+		"vendorId":""
+	}]
+]

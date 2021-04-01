@@ -1,0 +1,26 @@
+syntax: glob
+# Vagrant
+.m2/**
+Tools/vagrant/settings.xml
+
+# Development
+*.save
+*.hpi
+*.jpi
+*.orig
+ignore-*
+
+
+# Build
+**/target/**
+*.class
+*.jar
+*.rpm
+*.tar
+
+# Simulator
+
+01_SourceCode/node_modules
+
+01_SourceCode/logs/*
+!01_SourceCode/logs/.keep

@@ -1,0 +1,11 @@
+[
+	[2, "UniqueID", "StatusNotification", { 
+		"connectorId": 2,
+		"errorCode":"NoError",
+		"info":"NoInfo",
+		"status":"Available",
+		"timestamp":"",
+		"vendorErrorCode":"",
+		"vendorId":""
+	}]
+]

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simulator</title>
+	<link rel="icon" href="favicon.ico?v=1.1">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/fontawesome.min.css" integrity="sha512-8jdwayz5n8F2cnW26l9vpV6+yGOcRAqz6HTu+DQ3FtVIAts2gTdlFZOGpYhvBMXkWEgxPN3Y22UWyZXuDowNLA==" crossorigin="anonymous" />
+	<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<style type="text/css">
+		.chargepoint-log {
+			height: 30rem;
+		}
+		.badge {
+			cursor: pointer;
+		}
+		.app-footer {
+		  position: fixed;
+		   left: 0;
+		   bottom: 0;
+		   width: 100%;
+		   height: 5rem;
+		}
+		.fa {
+			width: 1rem;
+		}
+	</style>
+</head>
+<body>
+	<!-- <div class="float-right">
+		Legend - 
+		<ul class="list-group list-group-flush">
+		  <li class="list-group-item"><i class="fa fa-square text-primary bg-primary"></i> : CP/Connector working</li>
+		  <li class="list-group-item"><i class="fa fa-square text-danger bg-danger"></i> : CP/Connector is in error</li>
+		  <li class="list-group-item"><i class="fa fa-square text-warning bg-warning"></i> : CP/Connector is in delay</li>
+		  <li class="list-group-item"><i class="fa fa-square text-secondary bg-secondary"></i> : CP/Connector is paused</li>
+		  <li class="list-group-item"><i class="fa fa-square text-dark bg-dark"></i> : Connector is waiting for Remote Start/Stop</li>
+		</ul>
+	</div> -->
+	<div class="container mt-3">
+		<h1 class="text-center">Charger Simulator</h1>
+
+		<div class="text-center">
+			<div>
+				ChargeStation - <button class="btn btn-success" id="chargestation"></button>
+			</div>
+			<div>
+				<button class="btn btn-primary btn-sm mt-2">
+				  Chargepoints <span class="badge badge-pill badge-light" id="count">0</span>
+				</button>
+			</div>
+			
+		</div>
+		
+		<div class="mt-4 mb-5" id="cpData">
+		</div>
+		<hr>
+		<br>
+	</div>
+	<footer class="app-footer bg-light px-3 border-top border-dark">
+		<div class="fluid-container text-center mx-2 mb-2">
+			<div class="row">
+				<div class="col-md-2"><i class="fa fa-square text-primary bg-primary"></i> : CP/Connector is working</div>
+				<div class="col-md-2"><i class="fa fa-square text-success bg-success"></i> : Connector is charging</div>
+				<div class="col-md-2"><i class="fa fa-square text-danger bg-danger"></i> : CP/Connector has error</div>
+				<div class="col-md-2"><i class="fa fa-square text-warning bg-warning"></i> : CP/Connector is in delay</div>
+				<div class="col-md-2"><i class="fa fa-square text-secondary bg-secondary"></i> : CP/Connector is waiting for user</div>
+				<div class="col-md-2"><i class="fa fa-square text-dark bg-dark"></i> : Connector is waiting for CMS</div>
+			</div>
+		</div>
+	    <span><a href="http://numocity.com">Numocity Simulator</a> &copy; 2020</span>
+	    <span class="float-right">Powered by <a href="http://numocity.com">Numocity</a></span>
+	 </footer>
+	
+	<script>
+		$(function() {
+			var socket = io.connect();
+
+			$('#chargestation').html('-');
+			$('#count').html('0');
+
+			socket.on('init', function(data) {
+				$('#chargestation').html(data.chargestation);
+				$('#count').html(data.chargepoints.length);
+				$('#cpData').empty();
+				for(let i=0; i<data.chargepoints.length; i++) {
+					$('#cpData').append('<hr><div class="row" id="'+ data.chargepoints[i] +'-window"><div class="col-md-6 my-1 py-2 border border-dark"><btn class="btn btn-sm btn-danger float-right ml-1" id="'+ data.chargepoints[i] +'-close">Close</btn><btn class="btn btn-sm btn-info float-right ml-1" id="'+ data.chargepoints[i] +'-scroll">Scroll Down</btn><btn class="btn btn-sm btn-info float-right" id="'+ data.chargepoints[i] +'-clear">Clear</btn><h4><span class="h6">Chargepoint -</span><span class="badge badge-primary" id="'+ data.chargepoints[i] +'-badge">'+ data.chargepoints[i] +'</span></h4><div class="overflow-auto chargepoint-log border border-success mx-1 px-1 py-1" id="'+ data.chargepoints[i] +'">'+ data.chargepoints[i] +'<br></div></div></div>');
+
+					/** **** Example of how the above code will be ****
+					<hr>
+					<div class="row" id="CP001-window">
+						<div class="col-md-6 my-1 py-2 border border-dark">
+							<btn class="btn btn-sm btn-danger float-right ml-1" id="CP001-close">Close</btn>
+							<btn class="btn btn-sm btn-info float-right ml-1" id="CP001-scroll">Scroll Down</btn>
+							<btn class="btn btn-sm btn-info float-right" id="CP001-clear">Clear</btn>
+							<h4>
+								<span class="h6">Chargepoint -</span><span class="badge badge-primary" id="CP001-badge">CP001</span>
+							</h4>
+							<div class="overflow-auto chargepoint-log border border-success mx-1 px-1 py-1" id="CP001">
+								CP001<br>
+							</div>
+						</div>
+					</div>
+
+					**/
+
+					//set CP info in CP button i.e, delay or pause
+					if(data.cpInfo[i][0]) { //Delay
+						$('#'+data.chargepoints[i]+'-badge').removeClass();
+						$('#'+data.chargepoints[i]+'-badge').addClass('badge badge-warning');
+					} else if(data.cpInfo[i][1]) { //Pause
+						$('#'+data.chargepoints[i]+'-badge').removeClass();
+						$('#'+data.chargepoints[i]+'-badge').addClass('badge badge-secondary');
+					} else if(data.cpInfo[i][2]) { //Error
+						$('#'+data.chargepoints[i]+'-badge').removeClass();
+						$('#'+data.chargepoints[i]+'-badge').addClass('badge badge-danger');
+					}
+
+					//Scroll button functionality
+					$('#'+ data.chargepoints[i] +'-scroll').click(function() {
+						$('#'+data.chargepoints[i]).scrollTop($('#'+data.chargepoints[i]).scrollTop()+$('#'+data.chargepoints[i]).height());
+					});
+
+					//Clear button functionality
+					$('#'+ data.chargepoints[i] +'-clear').click(function() {
+						$('#'+ data.chargepoints[i]).html(' ');
+					});
+
+					//Close button functionality
+					$('#'+ data.chargepoints[i] +'-close').click(function() {
+						socket.emit('closeCP', { cpID: data.chargepoints[i] });
+					});
+
+					//Continue button functionality for chargepoints
+					$('#'+data.chargepoints[i] +'-badge').click(function() {
+						socket.emit('continue', { cpID: data.chargepoints[i] });
+					});
+				}
+				console.log(data);
+			});
+
+			socket.on('connInit', function(data) {
+				//Create connector buttons and windows
+
+				for(let i=0; i<data.connectors.length; i++) {
+					$('#'+data.cpID +'-window').append('<div class="col-md-6 my-1 py-2 border border-dark"><btn class="btn btn-sm btn-info float-right ml-1" id="'+ data.cpID + '-'+ data.connectors[i][0] +'-clear">Clear</btn><btn class="btn btn-sm btn-info float-right" id="'+ data.cpID + '-'+ data.connectors[i][0] +'-scroll">Scroll Down</btn><h4><button type="button" class="btn btn-sm btn-primary" id="'+ data.cpID+'-'+data.connectors[i][0]+'-badge">'+ data.cpID +'\'s Connector '+ data.connectors[i][0] +'</button></h4><div class="overflow-auto chargepoint-log border border-success mx-1 px-1 py-1" id="'+ data.cpID +'-'+ data.connectors[i][0] +'">'+ data.cpID +'<br></div></div>');
+					
+					if(data.connectors[i][1]) { //If the connector is in delay
+						$('#'+data.cpID+'-'+data.connectors[i][0]+'-badge').removeClass();
+						$('#'+data.cpID+'-'+data.connectors[i][0]+'-badge').addClass('btn btn-sm btn-warning');
+					} else if(data.connectors[i][2]) { //If the connector is in wait
+						$('#'+data.cpID+'-'+data.connectors[i][0]+'-badge').removeClass();
+						$('#'+data.cpID+'-'+data.connectors[i][0]+'-badge').addClass('btn btn-sm btn-dark');
+					} else if(data.connectors[i][3]) { //If the connector is in pause
+						$('#'+data.cpID+'-'+data.connectors[i][0]+'-badge').removeClass();
+						$('#'+data.cpID+'-'+data.connectors[i][0]+'-badge').addClass('btn btn-sm btn-secondary');
+					} else if(data.connectors[i][4]) { //If the connector is in error
+						$('#'+data.cpID+'-'+data.connectors[i][0]+'-badge').removeClass();
+						$('#'+data.cpID+'-'+data.connectors[i][0]+'-badge').addClass('btn btn-sm btn-danger');
+					} else if(data.connectors[i][5]) { //If the connector is charging
+						$('#'+data.cpID+'-'+data.connectors[i][0]+'-badge').removeClass();
+						$('#'+data.cpID+'-'+data.connectors[i][0]+'-badge').addClass('btn btn-sm btn-success');
+					}
+
+					//Scroll button functionality
+					$('#'+ data.cpID + '-'+ data.connectors[i][0] +'-scroll').click(function() {
+						$('#'+data.cpID+'-'+data.connectors[i][0]).scrollTop($('#'+data.cpID+'-'+data.connectors[i][0]).scrollTop()+$('#'+data.cpID+'-'+data.connectors[i][0]).height());
+					});
+
+					//Clear button functionality
+					$('#'+ data.cpID + '-'+ data.connectors[i][0] +'-clear').click(function() {
+						$('#'+ data.cpID + '-'+ data.connectors[i][0]).html(' ');
+					});
+
+					//Continue button functionality for connectors
+					$('#'+data.cpID  +'-'+ data.connectors[i][0]+'-badge').click(function() {
+						socket.emit('continue', { cpID: data.cpID, connID: data.connectors[i][0] });
+					});
+				}
+				console.log(data);
+			});
+
+			socket.on('info', function(data) {// Messages and info
+				if(data.source == 'config') { // These payloads are from config files and not from CMS
+					$('#'+data.cpID+'-badge').removeClass();
+					$('#'+data.cpID+'-badge').addClass('badge badge-primary');
+					if(data.connID) {
+						$('#'+data.cpID+'-'+data.connID+'-badge').removeClass();
+						$('#'+data.cpID+'-'+data.connID+'-badge').addClass('btn btn-sm btn-primary');
+					}	
+				}
+				if(data.connID) {
+					$('#'+data.cpID+'-'+data.connID).append('<span class="overflow-auto text-'+ data.type +'">'+data.msg+'</span><br>');
+
+					if(data.isCharging) {
+						$('#'+data.cpID+'-'+data.connID+'-badge').removeClass();
+						$('#'+data.cpID+'-'+data.connID+'-badge').addClass('btn btn-sm btn-success');
+					}
+				} else {
+					$('#'+data.cpID).append('<span class="overflow-auto text-'+ data.type +'">'+data.msg+'</span><br>');
+				}
+				console.log(data);
+			});
+
+			socket.on('delay', function(data) {
+				if(data.connID) {
+					$('#'+data.cpID+'-'+data.connID+'-badge').removeClass();
+					$('#'+data.cpID+'-'+data.connID+'-badge').addClass('btn btn-sm btn-warning');
+				} else {
+					$('#'+data.cpID+'-badge').removeClass();
+					$('#'+data.cpID+'-badge').addClass('badge badge-warning');
+				}
+				
+				console.log(data);
+			});
+
+			socket.on('wait', function(data) {
+				$('#'+data.cpID+'-'+data.connID+'-badge').removeClass();
+				$('#'+data.cpID+'-'+data.connID+'-badge').addClass('btn btn-sm btn-dark');
+		
+				console.log(data);
+			});
+
+			socket.on('pause', function(data) {
+				if(data.connID) {
+					$('#'+data.cpID+'-'+data.connID+'-badge').removeClass();
+					$('#'+data.cpID+'-'+data.connID+'-badge').addClass('btn btn-sm btn-secondary');
+				} else {
+					$('#'+data.cpID+'-badge').removeClass();
+					$('#'+data.cpID+'-badge').addClass('badge badge-secondary');
+				}
+		
+				console.log(data);
+			});
+
+			socket.on('error', function(data) {
+				if(data.connID) {
+					$('#'+data.cpID+'-'+data.connID+'-badge').removeClass();
+					$('#'+data.cpID+'-'+data.connID+'-badge').addClass('btn btn-sm btn-danger');
+				} else {
+					$('#'+data.cpID+'-badge').removeClass();
+					$('#'+data.cpID+'-badge').addClass('badge badge-danger');
+				}
+		
+				console.log(data);
+			});
+		});
+	</script>
+</body>
+</html>
